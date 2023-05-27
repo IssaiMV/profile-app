@@ -1,5 +1,51 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" [formGroup]="userForm" (ngSubmit)="submit()">
+            <mat-form-field class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthdate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <div formArrayName="listaContacto">
+                <div *ngFor="let contacto of listaContacto?.controls; let i=index" [formGroupName]="i">
+                    <mat-form-field class="w-full">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                        <!-- <mat-error *ngIf="email?.hasError('email') && !email?.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="email?.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error> -->
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Número de telefono</mat-label>
+                        <input matInput formControlName="numberPhone">
+                    </mat-form-field>
+
+                    <button type="button"
+                        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        (click)="removeFields(i)">Eliminar</button>
+                </div>
+            </div>
+            <button type="button"
+                class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                (click)="addFields()">Agregar
+                campos</button>
+
+            <div>
+                <button type="submit" [disabled]="!userForm.valid" mat-raised-button
+                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</button>
+            </div>
+        </form>
 
     </div>
 </div>
