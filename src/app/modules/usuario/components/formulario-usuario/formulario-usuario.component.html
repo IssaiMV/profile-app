@@ -1,0 +1,60 @@
+<form class="space-y-6" [formGroup]="userForm" (ngSubmit)="submit()">
+    <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="name?.hasError('required') && name?.touched">
+            El nombre es <strong>requerido</strong>.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" [matDatepickerFilter]="dateFilter" formControlName="birthdate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="birthdate?.hasError('required') && birthdate?.touched">
+            La fecha de nacimiento es <strong>requerida</strong>.
+        </mat-error>
+    </mat-form-field>
+    <button type="button"
+        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        (click)="addFields()">Agregar información de contacto </button>
+    <div formArrayName="contactList">
+        <div *ngFor="let contacto of contactList?.controls; let i=index" [formGroupName]="i">
+            <div class="contenedor-contacto">
+                <span>
+                    {{ i+1 }}. Información de contacto:
+                </span>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" *ngIf="i > 0"
+                    (click)="removeFields(i)">
+                    <i class="icofont-ui-delete"></i>
+                </button>
+            </div>
+            <mat-form-field class="w-full">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error
+                    *ngIf="contacto.get('email')?.hasError('email') && !contacto.get('email')?.hasError('required')">
+                    Ingresa un correo valido
+                </mat-error>
+                <mat-error *ngIf="contacto.get('email')?.hasError('required')">
+                    El email es <strong>requerido</strong>.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Número de telefono</mat-label>
+                <input matInput formControlName="numberPhone">
+                <mat-error
+                    *ngIf="contacto.get('numberPhone')?.hasError('required') && contacto.get('numberPhone')?.touched">
+                    El número de teléfono es <strong>requerido</strong>.
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div>
+        <button type="submit" [disabled]="!userForm.valid" mat-raised-button
+            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar
+        </button>
+    </div>
+</form>

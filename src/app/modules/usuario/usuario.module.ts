@@ -8,11 +8,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioUsuarioComponent } from './components/formulario-usuario/formulario-usuario.component';
+import { MostrarComponent } from './pages/mostrar/mostrar.component';
+import { CardUsuarioComponent } from './components/card-usuario/card-usuario.component';
 
 
 @NgModule({
   declarations: [
-    AgregarComponent
+    AgregarComponent,
+    FormularioUsuarioComponent,
+    MostrarComponent,
+    CardUsuarioComponent
   ],
   imports: [
     CommonModule,

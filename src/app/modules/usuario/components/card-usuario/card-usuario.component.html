@@ -1,0 +1,24 @@
+<div class="bg-white rounded-xl shadow-md overflow-hidden p-8">
+    <div class="flex flex-wrap">
+        <div class="sm:w-1/2 w-full">
+            <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Nombre</span>
+            <p class="block mt-1 text-lg leading-tight font-medium text-black">{{user.name}}</p>
+        </div>
+        <div class="sm:w-1/2 w-full">
+            <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Fecha de nacimiento</span>
+            <p class="block mt-1 text-lg leading-tight font-medium text-black">{{user.birthdate | date:
+                'dd/MM/yyyy'}}</p>
+        </div>
+    </div>
+    <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Contacto</span>
+    <div *ngFor="let contact of user.contactList" class="mt-2">
+        <span class="text-gray-500">Email: {{contact.email}}</span><br>
+        <span class="text-gray-500">Teléfono: {{contact.numberPhone}}</span>
+    </div>
+    <div class="mt-4 flex justify-end">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+            (click)="editUser()">Editar</button>
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            (click)="deleteUser()">Eliminar</button>
+    </div>
+</div>
