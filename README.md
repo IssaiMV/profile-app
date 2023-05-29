@@ -1,27 +1,55 @@
-# ProfileApp
+# Angular User Management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+Este proyecto es una aplicación simple de gestión de usuarios desarrollada con Angular. Los usuarios pueden añadir, editar y eliminar información de contacto, que se almacena localmente en el navegador.
 
-## Development server
+## Características
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Formulario de usuario con validación de campos.
+- Lista de usuarios con opciones para editar y eliminar.
+- Almacenamiento local para mantener la información entre sesiones.
+- Utiliza Angular Material para un diseño de UI elegante y responsive.
+- Implementa Tailwind CSS para un diseño personalizado y responsive.
 
-## Code scaffolding
+## Requisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Utiliza Angular para desarrollar la aplicación.
+2. Utiliza Tailwind CSS para estilizar los componentes.
+3. Utiliza Angular Material para los componentes de formulario.
+4. El formulario debe contener los siguientes campos: nombre, fecha de nacimiento, correo
+   electrónico y teléfono.
+5. Debe haber un botón &quot;Agregar campo&quot; que permita al usuario agregar un nuevo conjunto
+   de campos (correo electrónico y teléfono) dinámicamente.
+6. Los campos de nombre, fecha de nacimiento, correo electrónico y teléfono deben ser
+   obligatorios y deben validarse antes de enviar el formulario.
+7. Al enviar el formulario, muestra los valores de los campos en una tabla.
 
-## Build
+## Objetivos extras:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Agrega validaciones adicionales, como validación de formato de correo electrónico.
+2. Implementa la funcionalidad de eliminar campos dinámicamente.
+3. Validar que no se duplique el registro nombre, fecha de nacimiento, correo electrónico.
+4. Agregar el campo edad a la tabla y llenar el campo calculando la edad.
+5. Crea un diseño atractivo a tus capacidades y gustos.
 
-## Running unit tests
+## Tecnologías utilizadas
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-## Running end-to-end tests
+## Instalación
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clona este repositorio.
+2. Instala las dependencias con `npm install`.
+3. Ejecuta el servidor local con `ng serve`.
+4. Abre `http://localhost:4200` en tu navegador.
 
-## Further help
+## Uso
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. En la pantalla principal, haz clic en "Agregar usuario" para abrir el formulario.
+2. Rellena los campos con la información del usuario y haz clic en "Agregar".
+3. En la lista de usuarios, puedes hacer clic en "Editar" para modificar la información de un usuario o en "Eliminar" para borrarlo.
+
+## Contribuir
+
+Si encuentras algún error o tienes alguna sugerencia, por favor, abre un issue en este repositorio.
