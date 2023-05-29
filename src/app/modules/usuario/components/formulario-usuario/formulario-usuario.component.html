@@ -16,9 +16,9 @@
             La fecha de nacimiento es <strong>requerida</strong>.
         </mat-error>
     </mat-form-field>
-    <button type="button"
-        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        (click)="addFields()">Agregar información de contacto </button>
+    ¿Necesitas más campos? Haz click para
+    <button type="button" class="font-semibold text-indigo-600 hover:text-indigo-500" (click)="addFields()">agregar
+        campos</button>
     <div formArrayName="contactList">
         <div *ngFor="let contacto of contactList?.controls; let i=index" [formGroupName]="i">
             <div class="contenedor-contacto">
@@ -54,7 +54,7 @@
     </div>
     <div>
         <button type="submit" [disabled]="!userForm.valid" mat-raised-button
-            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar
+            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Guardar
         </button>
     </div>
 </form>

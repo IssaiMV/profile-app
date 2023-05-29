@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormularioUsuarioComponent } from './components/formulario-usuario/formulario-usuario.component';
 import { MostrarComponent } from './pages/mostrar/mostrar.component';
 import { CardUsuarioComponent } from './components/card-usuario/card-usuario.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CardUsuarioComponent } from './components/card-usuario/card-usuario.com
     AgregarComponent,
     FormularioUsuarioComponent,
     MostrarComponent,
-    CardUsuarioComponent
+    CardUsuarioComponent,
+    EditarComponent
   ],
   imports: [
     CommonModule,

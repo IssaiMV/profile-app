@@ -27,13 +27,13 @@ export class UserService {
   }
 
   edit(user: IUser): void {
-    const index = this.users.findIndex(u => u.id === user.id);
+    const index = this.users.findIndex(u => u.id == user.id);
 
     if (index === -1) {
       throw new Error('El usuario no existe.');
     }
 
-    if (this.isDuplicate(user)) {
+    if (this.isDuplicate(user, user.id)) {
       throw new Error('La edición resultaría en un usuario duplicado.');
     }
 
@@ -50,10 +50,24 @@ export class UserService {
     return user;
   }
 
-  getAll(): Promise<IUser[]> {
+  getPromise(id: number): Promise<IUser> {
+    return new Promise<IUser>((resolve, rejected) => {
+      const user = this.users.find((u: IUser) => u.id == id);
+      if (!user) {
+        rejected('El usuario no existe.');
+      } else {
+        resolve(user);
+      }
+    });
+  }
+
+  getAllPromise(): Promise<IUser[]> {
     return new Promise<IUser[]>((resolve) => {
       resolve(this.users);
     });
+  }
+  getAll(): IUser[] {
+    return this.users;
   }
 
   delete(id: number): void {
@@ -66,14 +80,17 @@ export class UserService {
     localStorage.setItem('userList', JSON.stringify(this.users));
   }
 
-  private isDuplicate(user: IUser): boolean {
-    return this.users.some(u => u.name === user.name && u.birthdate === user.birthdate && this.hasDuplicateContact(u.contactList, user.contactList));
+  private isDuplicate(user: IUser, id?: number): boolean {
+    if (id) {
+      return this.users.filter(u => u.id != id).some(u => u.name === user.name && new Date(u.birthdate).getTime() === new Date(user.birthdate).getTime() && this.hasDuplicateContact(u.contactList, user.contactList))
+    }
+    return this.users.some(u => u.name === user.name && new Date(u.birthdate).getTime() === new Date(user.birthdate).getTime() && this.hasDuplicateContact(u.contactList, user.contactList));
   }
 
   private hasDuplicateContact(contactList1: IContact[], contactList2: IContact[]): boolean {
     for (let contact1 of contactList1) {
       for (let contact2 of contactList2) {
-        if (contact1.email === contact2.email && contact1.numberPhone === contact2.numberPhone) {
+        if (contact1.email === contact2.email) {
           return true;
         }
       }

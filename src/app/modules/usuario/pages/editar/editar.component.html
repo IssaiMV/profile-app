@@ -1,8 +1,8 @@
 <div class="flex min-h-full justify-center px-6 py-12 lg:px-8">
     <div class="bg-white rounded-xl shadow-md overflow-hidden p-8">
-        <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Agregar nuevo usuario</span>
+        <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Editar usuario</span>
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <app-formulario-usuario (onFormSubmit)="saveUser($event)"></app-formulario-usuario>
+            <app-formulario-usuario (onFormSubmit)="saveUser($event)" [user]="user"></app-formulario-usuario>
         </div>
         <div *ngIf="errorMessage" class="mt-2 text-sm text-red-600">
             {{ errorMessage }}

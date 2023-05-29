@@ -9,6 +9,10 @@
             <p class="block mt-1 text-lg leading-tight font-medium text-black">{{user.birthdate | date:
                 'dd/MM/yyyy'}}</p>
         </div>
+        <div class="sm:w-1/2 w-full">
+            <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Edad</span>
+            <p class="block mt-1 text-lg leading-tight font-medium text-black">{{ calculateAge(user.birthdate) }}</p>
+        </div>
     </div>
     <span class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Contacto</span>
     <div *ngFor="let contact of user.contactList" class="mt-2">
@@ -16,8 +20,8 @@
         <span class="text-gray-500">Teléfono: {{contact.numberPhone}}</span>
     </div>
     <div class="mt-4 flex justify-end">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-            (click)="editUser()">Editar</button>
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+            [routerLink]="['/usuarios/editar', user.id]">Editar</a>
         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             (click)="deleteUser()">Eliminar</button>
     </div>

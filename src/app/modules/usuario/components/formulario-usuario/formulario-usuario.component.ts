@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../../../shared/models/user.model';
 
@@ -7,9 +7,10 @@ import { IUser } from '../../../../shared/models/user.model';
   templateUrl: './formulario-usuario.component.html',
   styleUrls: ['./formulario-usuario.component.scss']
 })
-export class FormularioUsuarioComponent {
+export class FormularioUsuarioComponent implements OnInit {
   userForm: FormGroup;
 
+  @Input() user: IUser | undefined;
   @Output() onFormSubmit = new EventEmitter<IUser>();
 
   constructor(private fb: FormBuilder) {
@@ -19,6 +20,15 @@ export class FormularioUsuarioComponent {
       contactList: this.fb.array([this.createContactoFormGroup()])
     });
   }
+  ngOnInit(): void {
+    if (this.user) {
+      for (let i = 0; i < this.user.contactList.length - 1; i++) {
+        this.addFields()
+      }
+      this.userForm.patchValue(this.user)
+    }
+  }
+
 
   get name(): any | null {
     return this.userForm.get('name')

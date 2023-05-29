@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IUser } from '../../../../shared/models/user.model';
 import { UserService } from '../../../../core/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './agregar.component.html',
@@ -12,12 +13,14 @@ export class AgregarComponent {
 
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   saveUser(user: IUser) {
     try {
       this.userService.save(user);
+      this.router.navigate(['/', 'usuarios']);
     } catch (error: any) {
       this.displayError(error.message);
     }
